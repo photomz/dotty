@@ -1,0 +1,21 @@
+# jupyter.yaml
+# Source: SkyPilot Docs
+
+name: jupyter
+
+resources:
+  accelerators: P100:1
+
+workdir: .
+
+setup: |
+  pip install --upgrade pip
+  conda init bash
+  conda create -n jupyter python=3.10 -y
+  conda activate jupyter
+  pip install jupyter
+
+run: |
+  cd ~/sky_workdir
+  conda activate jupyter
+  jupyter notebook --port 8888
